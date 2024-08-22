@@ -1,0 +1,53 @@
+.movies-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .filters {
+    margin-bottom: 20px;
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    .filter-input,
+    .filter-select {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .filter-select {
+      height: 100px;
+    }
+  }
+
+  .movies-list {
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+      .movie-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+
+        h3 {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .no-movies {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="map-container">
+  <google-map [center]="center" [zoom]="zoom">
+    <map-marker *ngFor="let location of locations" [position]="location"></map-marker>
+  </google-map>
+</div>
+<div style="height: 400px; width: 100%;">
+  Mapa debería estar aquí.
+</div>

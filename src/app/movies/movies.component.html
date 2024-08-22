@@ -1,0 +1,26 @@
+<div class="movies-container">
+  <h2>Lista de Películas</h2>
+
+  <div class="filters">
+    <h3>Filtrar Películas</h3>
+    <input type="text" placeholder="Nombre" [(ngModel)]="filterCriteria.name" (input)="applyFilters()" class="filter-input">
+    <input type="text" placeholder="Descripción" [(ngModel)]="filterCriteria.description" (input)="applyFilters()" class="filter-input">
+    <select multiple [(ngModel)]="filterCriteria.genres" (change)="applyFilters()" class="filter-select">
+      <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+    </select>
+  </div>
+
+  <div class="movies-list" *ngIf="filteredMovies.length > 0">
+    <ul>
+      <li *ngFor="let movie of filteredMovies" class="movie-item">
+        <h3>{{ movie.title }}</h3>
+        <p>{{ movie.description }}</p>
+        <p><strong>Género:</strong> {{ movie.genre }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="filteredMovies.length === 0" class="no-movies">
+    <p>No hay películas disponibles.</p>
+  </div>
+</div>

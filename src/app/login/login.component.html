@@ -1,0 +1,11 @@
+<div class="login-container">
+  <h1>Inicia sesión</h1>
+  <button (click)="signInWithGoogle()">Iniciar sesión con Google</button>
+
+  <re-captcha
+  siteKey="6LczrMsiAAAAAE47XMqfLQ5vMXhSaDtz9G_ewA"
+  (resolved)="resolved($event)">
+  </re-captcha>
+<button type="submit">Login</button>
+
+</div>
