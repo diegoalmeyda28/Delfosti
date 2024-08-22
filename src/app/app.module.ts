@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientMo
 import { MoviesComponent } from './movies/movies.component';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings } from 'ng-recaptcha'; // Importa el módulo
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
-    RecaptchaModule
+    RecaptchaModule,
+    GoogleSigninButtonModule
   ],
   providers: [
     AuthService,

@@ -2,9 +2,7 @@
   <h1>Inicia sesión</h1>
 
   <div *ngIf="!loggedIn">
-    <button google-signin-button>
-      Iniciar sesión con google
-    </button>
+    <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
   </div>
 
   <div *ngIf="loggedIn">
