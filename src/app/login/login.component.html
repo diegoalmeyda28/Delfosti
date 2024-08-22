@@ -1,11 +1,31 @@
 <div class="login-container">
   <h1>Inicia sesión</h1>
-  <button (click)="signInWithGoogle()">Iniciar sesión con Google</button>
+
+  <div *ngIf="!loggedIn">
+    <button google-signin-button>
+      Iniciar sesión con google
+    </button>
+  </div>
+
+  <div *ngIf="loggedIn">
+    <button (click)="logout()">Cerrar sesión</button>
+  </div>
+
+  <div *ngIf="loggedIn">
+    <h2>Welcome {{ user?.name }} {{user?.firstName}}</h2>
+    <img [src]="user?.photoUrl" alt="user photo">
+  </div>
+
+  <div *ngIf="!loggedIn">
+    <button (click)="showCaptcha = true">Validar Captcha</button>
+  </div>
 
   <re-captcha
-  siteKey="6LczrMsiAAAAAE47XMqfLQ5vMXhSaDtz9G_ewA"
-  (resolved)="resolved($event)">
+    *ngIf="showCaptcha"
+    (resolved)="resolved($event)"
+    (errored)="errored($event)"
+    errorMode="handled"
+  >
   </re-captcha>
-<button type="submit">Login</button>
 
 </div>

@@ -1,31 +1,47 @@
-import { Component } from '@angular/core';
-import { SocialAuthService } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-  private recaptchaToken: string = '';
+export class LoginComponent implements OnInit {
 
-  constructor(private authService: SocialAuthService, private recaptchaV3Service: ReCaptchaV3Service) {}
+  recaptchaToken: string = '';
+  showCaptcha: Boolean = false;
+  user: SocialUser | null = null;
+  loggedIn: boolean = false;
 
-  signInWithGoogle(): void {
-    this.recaptchaV3Service.execute('login').subscribe((token) => {
-      this.recaptchaToken = token;
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(() => {
-        console.log('Login successful');
-      }).catch(error => {
-        console.error('Login error:', error);
-      });
+  constructor(private authService: SocialAuthService) {
+  }
+
+  ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = user != null;
     });
+  }
+
+  refreshToken(): void {
+    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  validarCaptcha() {
+    this.showCaptcha = true;
   }
 
   resolved(captchaResponse: string) {
     this.recaptchaToken = captchaResponse;
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  errored(captchaResponse: any) {
+    console.error('Error:', captchaResponse);
+  }
+
+  logout(): void {
+    this.authService.signOut();
   }
 
   onSubmit() {
